@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
@@ -24,21 +25,26 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class PicCutActivity extends AppCompatActivity {
     private Context context = PicCutActivity.this;
     private String TAG = "PicCutActivityTAG";
     private Uri uri;// 选中的图片
     private Bitmap bitmap;// 裁剪后的图片
+    private SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd_HH_mm_ss", Locale.CHINA);
 
     private ImageView showPic;
     private Button choosePic;
     private ImageView showAfterCut;
+    private TextView picInfo;
     private Button save;
 
     @Override
@@ -65,7 +71,6 @@ public class PicCutActivity extends AppCompatActivity {
                 uri = data.getData();
                 if (uri != null) {
                     showPic.setImageURI(uri);
-                    //handleImageOnKitKat(data);
                     Log.d(TAG, "path: " + uri.getPath());
                 }
             }
@@ -96,6 +101,7 @@ public class PicCutActivity extends AppCompatActivity {
         showPic = findViewById(R.id.showPic);
         choosePic = findViewById(R.id.choosePic);
         showAfterCut = findViewById(R.id.showAfterCut);
+        picInfo = findViewById(R.id.picInfo);
         save = findViewById(R.id.save);
     }
 
@@ -136,6 +142,7 @@ public class PicCutActivity extends AppCompatActivity {
         });
 
         save.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 if (getExternalCacheDir() == null) {
@@ -144,12 +151,15 @@ public class PicCutActivity extends AppCompatActivity {
                 }
                 String filePath = getExternalCacheDir().getAbsolutePath();
                 Log.d(TAG, "path: " + filePath);
-                try (FileOutputStream fos = new FileOutputStream(new File(filePath, bitmap.toString() + ".jpeg"))) {
+                String fileName = format.format(System.currentTimeMillis()) + ".jpeg";
+                File destImage = new File(filePath, fileName);
+                try (FileOutputStream fos = new FileOutputStream(destImage)) {
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                     fos.flush();
                 } catch (IOException e) {
                     Log.d(TAG, "保存失败");
                 }
+                picInfo.setText("文件名：" + fileName + "    尺寸：" + destImage.length() + "B");
             }
         });
     }

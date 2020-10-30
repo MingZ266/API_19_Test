@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="30dp"
     tools:context=".PicCutActivity"
     tools:ignore="HardcodedText">
 
@@ -41,14 +42,28 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"/>
 
-        <Button
-            android:id="@+id/save"
+        <TextView
+            android:id="@+id/picInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:enabled="false"
-            android:text="保存"
-            android:textSize="22sp"/>
+            tools:text="图片信息"
+            android:textSize="18sp"
+            android:textColor="@color/blue"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="保存"
+                android:textSize="22sp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

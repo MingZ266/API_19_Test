@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="HardCodedText"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/toFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="文件操作"
+        android:textSize="22sp"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/toTestList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试List的Adapter"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/toCheckBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CheckBox"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/toTimeDeal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="时间处理"
+        android:textSize="22sp"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/toTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试"
+        android:textSize="22sp"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/toBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="后台任务"
+        android:textSize="22sp"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/toDiverseNotify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="多种通知"
+        android:textSize="22sp"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/toPicCut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="图片裁剪"
+        android:textSize="22sp"
+        android:textColor="@color/black"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+
+</LinearLayout>

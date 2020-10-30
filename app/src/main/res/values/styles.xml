@@ -1,0 +1,21 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="CircleCornerDialog" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="dialogCornerRadius">20dp</item>
+    </style>
+
+    <style name="CheckBoxColor" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#2ECCFA</item><!--未选中时的颜色-->
+        <item name="colorControlActivated">#2E9AFE</item><!--选中时的颜色-->
+    </style>
+
+</resources>

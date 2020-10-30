@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:padding="10dp"
+    tools:ignore="UseCompoundDrawables">
+
+    <ImageView
+        android:id="@+id/fileType"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        tools:background="@drawable/ic_file"
+        tools:ignore="ContentDescription"/>
+    <!--contentDescription：描述这一控件的作用-->
+
+    <TextView
+        android:id="@+id/fileName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:gravity="center_vertical"
+        tools:text="AAA"
+        android:textColor="@color/black"
+        android:textSize="22sp"/>
+
+</LinearLayout>

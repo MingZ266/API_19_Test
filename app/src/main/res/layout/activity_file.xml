@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    tools:context=".FileActivity"
+    tools:ignore="HardCodedText">
+
+    <TextView
+        android:id="@+id/filePath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        tools:text="/data/AAA"
+        android:textColor="@color/blue"
+        android:textSize="20sp"/>
+
+    <ListView
+        android:id="@+id/fileLook"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:divider="@color/gray"
+        android:background="@color/shallowBlue"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/createFile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="创建文件"
+                android:textSize="22sp"/>
+
+            <Button
+                android:id="@+id/createPaperFile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="创建文件夹"
+                android:textSize="22sp"/>
+
+            <Button
+                android:id="@+id/deleteAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="删除当前目录所有文件(夹)"
+                android:textSize="22sp"/>
+
+            <Button
+                android:id="@+id/createSP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="创建SharedPreferences缓存"
+                android:textSize="22sp"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/objectOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="利用Gson将对象写入文件"
+                android:textSize="22sp"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/objectIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="利用Gson从文件读取对象"
+                android:textSize="22sp"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

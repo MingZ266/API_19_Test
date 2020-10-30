@@ -2,7 +2,12 @@ package com.tai.api19test;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -131,5 +136,68 @@ class Tools {
         SharedPreferences.Editor editor = sp.edit();
         editor.clear();
         editor.apply();
+    }
+
+    //---------------------图片、Uri、Bitmap----------------------
+    /**
+     * 将图片的Uri转为Bitmap对象.
+     *
+     * @param imageUri 图片的uri
+     * @return 转换后的Bitmap对象
+     */
+    public static Bitmap uri2Bitmap(Context context, Uri imageUri) {
+        if (imageUri == null)
+            return null;
+        try {
+            return MediaStore.Images.Media.getBitmap(context.getContentResolver(), imageUri);
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+    /**
+     * 将图片的Bitmap对象转为uri.
+     * 通过向相册插入bitmap图像实现，因此建议uri使用后删除图片
+     *
+     * @param bitmap 图片的Bitmap对象
+     * @return 指向插入相册的图片的uri
+     */
+    public static Uri bitmap2Uri(Context context, Bitmap bitmap) {
+        if (bitmap == null)
+            return null;
+        return Uri.parse(MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, null, null));
+    }
+
+    /**
+     * 获得uri指向的图片存储路径.
+     *
+     * @param imageUri 图片的uri
+     * @return 返回图片的存储路径
+     */
+    public static String getImagePathFromUri(Context context, Uri imageUri) {
+        String imagePath;
+        try (Cursor cursor = context.getContentResolver().query(imageUri, new String[]{MediaStore.Images.Media.DATA}, null, null, null)) {
+          if (cursor == null)
+              imagePath = imageUri.getPath();
+          else {
+              int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+              cursor.moveToFirst();
+              imagePath = context.getString(index);
+          }
+        }
+        return imagePath;
+    }
+
+    /**
+     * 删除uri指向的图片.
+     *
+     * @param imageUri 图片的uri
+     */
+    @SuppressWarnings("all")// 忽略未使用delete的返回值
+    public static void delImageFromUri(Context context, Uri imageUri) {
+        if (imageUri == null)
+            return;
+        File image = new File(getImagePathFromUri(context, imageUri));
+         image.delete();
     }
 }

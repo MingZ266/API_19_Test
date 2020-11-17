@@ -1,4 +1,4 @@
-package DiyView;
+package com.tai.api19test.view;
 
 import android.view.View;
 import android.view.ViewGroup;

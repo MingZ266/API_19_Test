@@ -1,14 +1,14 @@
-package com.tai.api19test;
+package com.tai.api19test.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,12 +23,16 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+
+import com.tai.api19test.R;
+import com.tai.api19test.util.Tools;
 
 public class PicCutActivity extends AppCompatActivity {
     private Context context = PicCutActivity.this;
@@ -99,7 +103,11 @@ public class PicCutActivity extends AppCompatActivity {
                     break;
             }
         } else {
-            Log.d(TAG, "返回数据为空");
+            if (requestCode == 222) {
+                Bitmap bitmap = BitmapFactory.decodeFile(cameraFile.getAbsolutePath());
+                showPic.setImageBitmap(bitmap);
+            } else
+                Log.d(TAG, "返回数据为空");
         }
     }
 
@@ -129,7 +137,7 @@ public class PicCutActivity extends AppCompatActivity {
                 cameraFile = new File(filePath, fileName);
                 Log.d(TAG, "e path: " + filePath);
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraFile);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(context, getPackageName() + ".fileProvider", cameraFile));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
                 }

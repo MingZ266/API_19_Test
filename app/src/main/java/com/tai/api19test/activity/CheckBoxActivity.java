@@ -1,4 +1,4 @@
-package com.tai.api19test;
+package com.tai.api19test.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
+
+import com.tai.api19test.R;
 
 public class CheckBoxActivity extends AppCompatActivity {
     private StringBuffer str;

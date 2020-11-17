@@ -2,11 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tai.api19test">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -15,21 +16,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PicCutActivity"/>
-        <activity android:name=".DiverseNotifyActivity" />
+        <activity android:name=".activity.QRCodeActivity" />
+        <activity android:name=".activity.ScrollTestActivity" />
+        <activity android:name=".activity.NetRequestActivity" />
+        <activity android:name=".activity.PicCutActivity" />
+        <activity android:name=".activity.DiverseNotifyActivity" />
 
         <service
-            android:name=".BackgroundService"
+            android:name=".service.BackgroundService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".BackgroundActivity" />
-        <activity android:name=".TestActivity" />
-        <activity android:name=".TimeDealActivity" />
-        <activity android:name=".CheckBoxActivity" />
-        <activity android:name=".TestListActivity" />
-        <activity android:name=".FileActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.BackgroundActivity" />
+        <activity android:name=".activity.TestActivity" />
+        <activity android:name=".activity.TimeDealActivity" />
+        <activity android:name=".activity.CheckBoxActivity" />
+        <activity android:name=".activity.TestListActivity" />
+        <activity android:name=".activity.FileActivity" />
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

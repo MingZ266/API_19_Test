@@ -1,4 +1,4 @@
-package com.tai.api19test;
+package com.tai.api19test.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RemoteViews;
+
+import com.tai.api19test.R;
 
 public class DiverseNotifyActivity extends AppCompatActivity {
     private Context context = this;

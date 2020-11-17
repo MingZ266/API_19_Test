@@ -72,6 +72,30 @@
         android:textSize="22sp"
         android:textColor="@color/black"/>
 
+    <Button
+        android:id="@+id/toNetRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="网络请求"
+        android:textSize="22sp"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/toScrollTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="滑动"
+        android:textSize="22sp"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/toQRCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="QR码"
+        android:textSize="22sp"
+        android:textColor="@color/black"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="30dp"/>

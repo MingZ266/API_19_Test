@@ -1,4 +1,4 @@
-package com.tai.api19test;
+package com.tai.api19test.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -22,11 +22,12 @@ import org.apache.commons.mycodec.digest.DigestUtils;
 import java.lang.reflect.Field;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import DiyView.AutoHeightPagerAdapter;
-import DiyView.AutoHeightViewPager;
+import com.tai.api19test.R;
+import com.tai.api19test.view.AutoHeightPagerAdapter;
+import com.tai.api19test.view.AutoHeightViewPager;
+import com.tai.api19test.util.Tools;
 
 public class MainActivity extends AppCompatActivity {
     private Context context = MainActivity.this;
@@ -173,6 +174,9 @@ public class MainActivity extends AppCompatActivity {
         skip(adapter.getIndexView(0).findViewById(R.id.toBackground), BackgroundActivity.class);
         skip(adapter.getIndexView(0).findViewById(R.id.toDiverseNotify), DiverseNotifyActivity.class);
         skip(adapter.getIndexView(0).findViewById(R.id.toPicCut), PicCutActivity.class);
+        skip(adapter.getIndexView(0).findViewById(R.id.toNetRequest), NetRequestActivity.class);
+        skip(adapter.getIndexView(0).findViewById(R.id.toScrollTest), ScrollTestActivity.class);
+        skip(adapter.getIndexView(0).findViewById(R.id.toQRCode), QRCodeActivity.class);
     }
 
     private void skip(View skipBtn, final Class<? extends AppCompatActivity> skipActivityClass) {

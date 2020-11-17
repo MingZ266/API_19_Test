@@ -1,4 +1,4 @@
-package com.tai.api19test;
+package com.tai.api19test.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+
+import com.tai.api19test.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

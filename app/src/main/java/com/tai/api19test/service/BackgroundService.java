@@ -1,4 +1,4 @@
-package com.tai.api19test;
+package com.tai.api19test.service;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -14,6 +14,8 @@ import android.provider.Settings;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
+
+import com.tai.api19test.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;

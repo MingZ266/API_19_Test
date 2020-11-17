@@ -1,11 +1,10 @@
-package com.tai.api19test;
+package com.tai.api19test.activity;
 
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,6 +21,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.tai.api19test.service.BackgroundService;
+import com.tai.api19test.R;
+import com.tai.api19test.util.Tools;
 
 public class BackgroundActivity extends AppCompatActivity {
     private String TAG = "BackgroundActivityTAG";

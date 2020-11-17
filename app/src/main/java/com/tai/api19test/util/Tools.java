@@ -1,4 +1,4 @@
-package com.tai.api19test;
+package com.tai.api19test.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -17,8 +16,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-class Tools {
-    static String selfStartCfg = "SelfStart.cfg";
+public class Tools {
+    public static String selfStartCfg = "SelfStart.cfg";
 
     private static String TAG = "ToolsTAG";
 
@@ -29,23 +28,23 @@ class Tools {
      * 测量已展示出来的View可能导致View的展示效果改变;
      * 在view没有指定的父控件时，match_parent效果同warp_content.
      */
-    static class AboutView {
+    public static class AboutView {
         private View view;
 
-        void setView(View view) {
+        public void setView(View view) {
             if (view == null)
                 throw new NullPointerException("传给Tools.AboutView的view为空");
             this.view = view;
             this.view.measure(0, 0);
         }
 
-        int getViewW() {
+        public int getViewW() {
             if (view == null)
                 throw new NullPointerException("Tools.AboutView中的view为空");
             return view.getMeasuredWidth();
         }
 
-        int getViewH() {
+        public int getViewH() {
             if (view == null)
                 throw new NullPointerException("Tools.AboutView中的view为空");
             return view.getMeasuredHeight();
@@ -59,31 +58,31 @@ class Tools {
      *      px -> dp    dp -> px
      *      px -> sp    sp -> px
      */
-    static class UnitChange {
+    public static class UnitChange {
         private DisplayMetrics dm;
 
-        UnitChange(Context context) {
+        public UnitChange(Context context) {
             dm = context.getResources().getDisplayMetrics();
         }
 
-        int fromPxToDp(float pxValue) {
+        public int fromPxToDp(float pxValue) {
             return (int) (pxValue / dm.density + 0.5f);
         }
 
-        int fromPxToSp(float pxValue) {
+        public int fromPxToSp(float pxValue) {
             return (int) (pxValue / dm.scaledDensity + 0.5f);
         }
 
-        int fromDpToPx(float dpValue) {
+        public int fromDpToPx(float dpValue) {
             return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, dm);
         }
 
-        int fromSpToPx(float spValue) {
+        public int fromSpToPx(float spValue) {
             return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, dm);
         }
     }
 
-    static void saveStartTimeLog(Context context) {
+    public static void saveStartTimeLog(Context context) {
         SimpleDateFormat format = new SimpleDateFormat("MM月dd日 HH:mm:ss", Locale.CHINA);
         //Log.d(TAG, format.format(System.currentTimeMillis()));
         File cache = context.getExternalCacheDir();

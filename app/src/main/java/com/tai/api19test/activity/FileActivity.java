@@ -1,4 +1,4 @@
-package com.tai.api19test;
+package com.tai.api19test.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
+import com.tai.api19test.R;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,11 +34,13 @@ import java.util.Arrays;
 
 public class FileActivity extends AppCompatActivity {
     String TAG = "FileActivityTAG";
-    private Context context = FileActivity.this;
+    private final Context context = FileActivity.this;
     private String path, rootPath;
     private File[] files = null;
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
+    private final String[] loc = new String[] {"内部存储", "外部存储"};
 
+    private Spinner browseLoc;
     private TextView filePath;
     private ListView fileLook;
     private Button createFile, createPaperFile, deleteAll;
@@ -54,6 +58,7 @@ public class FileActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        browseLoc = findViewById(R.id.browseLoc);
         filePath = findViewById(R.id.filePath);
         fileLook = findViewById(R.id.fileLook);
         createFile = findViewById(R.id.createFile);
@@ -65,14 +70,24 @@ public class FileActivity extends AppCompatActivity {
     }
 
     private void myProcess() {
+        browseLoc.setAdapter(null);
         path = getCacheDir().getAbsolutePath();
-        Log.d(TAG, "测试：" + path);
         rootPath = path.substring(0, path.lastIndexOf('/'));
         filePath.setText(path);
         refresh();
     }
 
     private void myListener() {
+        browseLoc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
         fileLook.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -621,6 +636,29 @@ public class FileActivity extends AppCompatActivity {
         private class ViewHolder {
             ImageView fileType;
             TextView fileName;
+        }
+    }
+
+    private static class BrowseLocSpinnerAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return null;
         }
     }
 

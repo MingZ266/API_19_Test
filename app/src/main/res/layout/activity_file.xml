@@ -5,8 +5,13 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     android:orientation="vertical"
-    tools:context=".FileActivity"
+    tools:context=".activity.FileActivity"
     tools:ignore="HardCodedText">
+
+    <Spinner
+        android:id="@+id/browseLoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/filePath"

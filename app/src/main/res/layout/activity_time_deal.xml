@@ -7,7 +7,7 @@
     android:padding="10dp"
     android:orientation="vertical"
     tools:ignore="HardCodedText"
-    tools:context=".TimeDealActivity">
+    tools:context=".activity.TimeDealActivity">
 
     <TextView
         android:id="@+id/timeText"

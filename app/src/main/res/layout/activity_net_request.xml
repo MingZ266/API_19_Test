@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context=".activity.NetRequestActivity"
+    tools:ignore="HardcodedText,Autofill">
+
+    <EditText
+        android:id="@+id/inputAddress"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="请输入域名"
+        android:textSize="22sp"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/inputPath"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="请输入访问路径"
+        android:textSize="22sp"
+        android:inputType="text"/>
+
+    <Button
+        android:id="@+id/sendRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送请求"
+        android:textSize="22sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请求结果："
+        android:textColor="@color/cyan"/>
+
+    <TextView
+        android:id="@+id/showResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="80dp"
+        android:padding="10dp"
+        tools:text="MingZ"
+        android:textSize="18sp"
+        android:background="@drawable/bg_background"/>
+
+    <Button
+        android:id="@+id/sendKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送公钥"
+        android:textSize="22sp"/>
+
+    <Button
+        android:id="@+id/getData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取数据"
+        android:textSize="22sp"/>
+
+    <Button
+        android:id="@+id/decryptData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="解密数据"
+        android:textSize="22sp"/>
+
+    <Button
+        android:id="@+id/quickly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="一步到位"
+        android:textSize="22sp"/>
+
+    <TextView
+        android:id="@+id/showTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="耗时："
+        android:textColor="@color/purple"/>
+
+</LinearLayout>

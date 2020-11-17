@@ -1,4 +1,4 @@
-package DiyView;
+package com.tai.api19test.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -52,7 +52,7 @@ public class AutoHeightViewPager extends ViewPager {
         }
         else {
             view.measure(0, 0);
-            //Log.d("TAG", "View高度：" + view.getMeasuredHeight() + "px");
+            //Log.d("TAG", "View高度：" + com.tai.api19test.view.getMeasuredHeight() + "px");
             if (specMode == MeasureSpec.UNSPECIFIED) {
                 //Log.d("TAG", "UNSPECIFIED");
                 return view.getMeasuredHeight();// 无限制模式返回view高度

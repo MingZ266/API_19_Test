@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,9 +39,9 @@ public class FileActivity extends AppCompatActivity {
     private String path, rootPath;
     private File[] files = null;
     private final Gson gson = new Gson();
-    private final String[] loc = new String[] {"内部存储", "外部存储"};
+    private static final String[] loc = new String[] {"内部存储", "外部存储"};
 
-    private Spinner browseLoc;
+    private Spinner selectLoc;
     private TextView filePath;
     private ListView fileLook;
     private Button createFile, createPaperFile, deleteAll;
@@ -53,12 +54,12 @@ public class FileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_file);
 
         initView();
-        myProcess();
+        selectLoc.setAdapter(new ArrayAdapter<>(context, R.layout.support_simple_spinner_dropdown_item, loc));
         myListener();
     }
 
     private void initView() {
-        browseLoc = findViewById(R.id.browseLoc);
+        selectLoc = findViewById(R.id.selectLoc);
         filePath = findViewById(R.id.filePath);
         fileLook = findViewById(R.id.fileLook);
         createFile = findViewById(R.id.createFile);
@@ -69,19 +70,26 @@ public class FileActivity extends AppCompatActivity {
         objectIn = findViewById(R.id.objectIn);
     }
 
-    private void myProcess() {
-        browseLoc.setAdapter(null);
-        path = getCacheDir().getAbsolutePath();
-        rootPath = path.substring(0, path.lastIndexOf('/'));
-        filePath.setText(path);
-        refresh();
-    }
-
     private void myListener() {
-        browseLoc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        selectLoc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            private File internal = null;
+            private File external = null;
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                
+                switch (position) {
+                    case 0:
+                        if (internal == null)
+                            internal = getFilesDir();
+                        changeLoc(internal.getAbsolutePath());
+                        break;
+                    case 1:
+                        if (external == null)
+                            external = getExternalFilesDir("");
+                        if (external != null)
+                            changeLoc(external.getAbsolutePath());
+                        break;
+                }
             }
 
             @Override
@@ -585,6 +593,13 @@ public class FileActivity extends AppCompatActivity {
         fileLook.setAdapter(new FileLookAdapter());
     }
 
+    private void changeLoc(String pathLoc) {
+        path = pathLoc;
+        rootPath = path.substring(0, path.lastIndexOf('/'));
+        filePath.setText(path);
+        refresh();
+    }
+
     private class FileLookAdapter extends BaseAdapter {
 
         @Override
@@ -636,29 +651,6 @@ public class FileActivity extends AppCompatActivity {
         private class ViewHolder {
             ImageView fileType;
             TextView fileName;
-        }
-    }
-
-    private static class BrowseLocSpinnerAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return 2;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return null;
         }
     }
 

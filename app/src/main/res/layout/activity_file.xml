@@ -9,9 +9,10 @@
     tools:ignore="HardCodedText">
 
     <Spinner
-        android:id="@+id/browseLoc"
+        android:id="@+id/selectLoc"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/filePath"

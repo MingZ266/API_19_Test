@@ -59,7 +59,7 @@ public class Tools {
      *      px -> sp    sp -> px
      */
     public static class UnitChange {
-        private DisplayMetrics dm;
+        private final DisplayMetrics dm;
 
         public UnitChange(Context context) {
             dm = context.getResources().getDisplayMetrics();
@@ -197,6 +197,6 @@ public class Tools {
         if (imageUri == null)
             return;
         File image = new File(getImagePathFromUri(context, imageUri));
-         image.delete();
+        image.delete();
     }
 }

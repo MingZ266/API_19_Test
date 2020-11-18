@@ -30,7 +30,7 @@ import com.tai.api19test.view.AutoHeightViewPager;
 import com.tai.api19test.util.Tools;
 
 public class MainActivity extends AppCompatActivity {
-    private Context context = MainActivity.this;
+    private final Context context = MainActivity.this;
     private static boolean saveTime = true;
     private AutoHeightPagerAdapter adapter;
     private Tools.UnitChange uc;

@@ -363,7 +363,6 @@ public class CropPictureView extends View {
         setSrcPic(drawable);
     }
 
-    @Deprecated
     public void setSrcPic(Bitmap pic) {
         if (pic == null) {
             throw new NullPointerException("Bitmap图片为null");
@@ -395,9 +394,9 @@ public class CropPictureView extends View {
                 // 裁剪图片
                 Bitmap cutPic = Bitmap.createBitmap(thePic, (int) (thePic.getWidth() * atPic.x),
                         (int) (thePic.getHeight() * atPic.y), cutWidth, cutHeight);
-                cutPic = Bitmap.createScaledBitmap(cutPic, cutPicRect.width(), cutPicRect.height(), true);// 将裁剪后的图片按比例缩放
-                canvas.drawBitmap(cutPic, atFrame.x, atFrame.y, null);
-                cutPic.recycle();
+                Drawable cutPicD = new BitmapDrawable(context.getResources(), cutPic);
+                cutPicD.setBounds(atFrame.x, atFrame.y, cutPicRect.width(), cutPicRect.height());
+                cutPicD.draw(canvas);
             }
             canvas.save();
             return bitmap;

@@ -12,12 +12,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.tai.api19test.R;
+import com.tai.api19test.util.Tools;
 import com.tai.api19test.view.CropPictureView;
 import com.tai.api19test.view.MyImageView;
 
 import java.io.FileNotFoundException;
 
 public class CustomViewActivity extends AppCompatActivity {
+    private final AppCompatActivity activity = this;
     private static final String TAG = "CustomViewTAG";
     private final int choosePicRequestCode = 266;
 
@@ -67,11 +69,12 @@ public class CustomViewActivity extends AppCompatActivity {
             if (data != null) {
                 Uri uri = data.getData();
                 if (uri != null) {
-                    try {
+                    /*try {
                         cropPicture.setSrcPic(uri);
                     } catch (FileNotFoundException e) {
                         Log.d(TAG, "Uri转图片失败");
-                    }
+                    }*/
+                    cropPicture.setSrcPic(Tools.uri2Bitmap(activity, uri));
                 }
             }
         }

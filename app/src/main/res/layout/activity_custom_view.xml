@@ -56,6 +56,30 @@
                 android:background="@color/blue"
                 android:layout_marginTop="10dp"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                tools:ignore="ButtonStyle">
+
+                <Button
+                    android:id="@+id/save"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="保存图片"
+                    android:textSize="22sp"/>
+
+                <Button
+                    android:id="@+id/look"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="查看图片"
+                    android:textSize="22sp"/>
+
+            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="30dp"/>

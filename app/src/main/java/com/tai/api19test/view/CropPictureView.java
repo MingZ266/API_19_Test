@@ -198,98 +198,99 @@ public class CropPictureView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        //Log.d(TAG, event.toString());
-        float x, y;
-        switch (event.getAction() & MotionEvent.ACTION_MASK) {
-            case MotionEvent.ACTION_DOWN:
-                x = event.getX(0);
-                y = event.getY(0);
-                doubleFingerMoving = false;
-                fingerPoints[0].setFloat(x, y);
-                frameMoving = cropFrameRectF.contains(x, y);
-                if (frameMoving) {
-                    xAtFrame = x - cropFrameRectF.left;
-                    yAtFrame = y - cropFrameRectF.top;
-                }
-                break;
-            case MotionEvent.ACTION_POINTER_DOWN:
-                frameMoving = false;
-                fingerPoints[1].setFloat(event.getX(1), event.getY(1));
-                doubleFingerMoving = event.getPointerCount() == 2;
-                if (doubleFingerMoving) {
-                    setFingerMidPoint();
-                    setZoomMidPoint();
-                    lastTwoPointDistance = getTwoPointDistance();
-                }
-                break;
-            case MotionEvent.ACTION_MOVE:
-                if (frameMoving) {
-                    drawFrameStartX = event.getX(0) - xAtFrame;
-                    drawFrameStartY = event.getY(0) - yAtFrame;
-                    if (drawFrameStartX < 0) {
-                        drawFrameStartX = 0;
-                    } else if (drawFrameStartX + cropFrameWeight > getWidth()) {
-                        drawFrameStartX = getWidth() - cropFrameWeight;
-                    } else if (Math.abs(drawFrameStartX - picRect.left) <= 10) {
-                        drawFrameStartX = picRect.left;
-                    } else if (Math.abs(drawFrameStartX + cropFrameWeight - picRect.right) <= 10) {
-                        drawFrameStartX = picRect.right - cropFrameWeight;
+        if (thePic != null) {
+            float x, y;
+            switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                case MotionEvent.ACTION_DOWN:
+                    x = event.getX(0);
+                    y = event.getY(0);
+                    doubleFingerMoving = false;
+                    fingerPoints[0].setFloat(x, y);
+                    frameMoving = cropFrameRectF.contains(x, y);
+                    if (frameMoving) {
+                        xAtFrame = x - cropFrameRectF.left;
+                        yAtFrame = y - cropFrameRectF.top;
                     }
-                    if (drawFrameStartY < 0) {
-                        drawFrameStartY = 0;
-                    } else if (drawFrameStartY + cropFrameWeight > getHeight()) {
-                        drawFrameStartY = getHeight() - cropFrameWeight;
-                    } else if (Math.abs(drawFrameStartY - picRect.top) <= 10) {
-                        drawFrameStartY = picRect.top;
-                    } else if (Math.abs(drawFrameStartY + cropFrameWeight - picRect.bottom) <= 10) {
-                        drawFrameStartY = picRect.bottom - cropFrameWeight;
-                    }
-                    refresh();
-                }
-                if (doubleFingerMoving) {
-                    oldFingerMidPoint.set(fingerMidPoint.x, fingerMidPoint.y);
-                    fingerPoints[0].setFloat(event.getX(0), event.getY(0));
+                    break;
+                case MotionEvent.ACTION_POINTER_DOWN:
+                    frameMoving = false;
                     fingerPoints[1].setFloat(event.getX(1), event.getY(1));
-                    setFingerMidPoint();
-                    double distance = getTwoPointDistance();
-                    double diff = distance - lastTwoPointDistance;
-                    if (Math.abs(diff) <= 30) {// 双指平行移动
-                        int xDiff = oldFingerMidPoint.x - fingerMidPoint.x;
-                        int yDiff = oldFingerMidPoint.y - fingerMidPoint.y;
-                        picRect.left -= xDiff;
-                        picRect.top -= yDiff;
-                        picRect.right -= xDiff;
-                        picRect.bottom -= yDiff;
-                    } else {// 缩放手势
-                        double scale = distance / lastTwoPointDistance;
-                        int width = (int) (picRect.width() * scale);
-                        int height = (int) (picRect.height() * scale);
-                        if (width < cropFrameWeight) {
-                            width = (int) cropFrameWeight;
-                            height = width * picRect.height() / picRect.width();
-                        }
-                        if (height < cropFrameWeight) {
-                            height = (int) cropFrameWeight;
-                            width = height * picRect.width() / picRect.height();
-                        }
-                        picRect.left = (int) (zoomMidPoint.x - width * zoomPointScale.x);
-                        picRect.right = picRect.left + width;
-                        picRect.top = (int) (zoomMidPoint.y - height * zoomPointScale.y);
-                        picRect.bottom = picRect.top + height;
+                    doubleFingerMoving = event.getPointerCount() == 2;
+                    if (doubleFingerMoving) {
+                        setFingerMidPoint();
+                        setZoomMidPoint();
+                        lastTwoPointDistance = getTwoPointDistance();
                     }
-                    setZoomMidPoint();
-                    lastTwoPointDistance = distance;
-                    if (initPicRect) {
-                        initPicRect = false;
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    if (frameMoving) {
+                        drawFrameStartX = event.getX(0) - xAtFrame;
+                        drawFrameStartY = event.getY(0) - yAtFrame;
+                        if (drawFrameStartX < 0) {
+                            drawFrameStartX = 0;
+                        } else if (drawFrameStartX + cropFrameWeight > getWidth()) {
+                            drawFrameStartX = getWidth() - cropFrameWeight;
+                        } else if (Math.abs(drawFrameStartX - picRect.left) <= 10) {
+                            drawFrameStartX = picRect.left;
+                        } else if (Math.abs(drawFrameStartX + cropFrameWeight - picRect.right) <= 10) {
+                            drawFrameStartX = picRect.right - cropFrameWeight;
+                        }
+                        if (drawFrameStartY < 0) {
+                            drawFrameStartY = 0;
+                        } else if (drawFrameStartY + cropFrameWeight > getHeight()) {
+                            drawFrameStartY = getHeight() - cropFrameWeight;
+                        } else if (Math.abs(drawFrameStartY - picRect.top) <= 10) {
+                            drawFrameStartY = picRect.top;
+                        } else if (Math.abs(drawFrameStartY + cropFrameWeight - picRect.bottom) <= 10) {
+                            drawFrameStartY = picRect.bottom - cropFrameWeight;
+                        }
+                        refresh();
                     }
-                    refresh();
-                }
-                break;
-            case MotionEvent.ACTION_UP:
-                performClick();
-            default:
-                doubleFingerMoving = false;
-                frameMoving = false;
+                    if (doubleFingerMoving) {
+                        oldFingerMidPoint.set(fingerMidPoint.x, fingerMidPoint.y);
+                        fingerPoints[0].setFloat(event.getX(0), event.getY(0));
+                        fingerPoints[1].setFloat(event.getX(1), event.getY(1));
+                        setFingerMidPoint();
+                        double distance = getTwoPointDistance();
+                        double diff = distance - lastTwoPointDistance;
+                        if (Math.abs(diff) <= 30) {// 双指平行移动
+                            int xDiff = oldFingerMidPoint.x - fingerMidPoint.x;
+                            int yDiff = oldFingerMidPoint.y - fingerMidPoint.y;
+                            picRect.left -= xDiff;
+                            picRect.top -= yDiff;
+                            picRect.right -= xDiff;
+                            picRect.bottom -= yDiff;
+                        } else {// 缩放手势
+                            double scale = distance / lastTwoPointDistance;
+                            int width = (int) (picRect.width() * scale);
+                            int height = (int) (picRect.height() * scale);
+                            if (width < cropFrameWeight) {
+                                width = (int) cropFrameWeight;
+                                height = width * picRect.height() / picRect.width();
+                            }
+                            if (height < cropFrameWeight) {
+                                height = (int) cropFrameWeight;
+                                width = height * picRect.width() / picRect.height();
+                            }
+                            picRect.left = (int) (zoomMidPoint.x - width * zoomPointScale.x);
+                            picRect.right = picRect.left + width;
+                            picRect.top = (int) (zoomMidPoint.y - height * zoomPointScale.y);
+                            picRect.bottom = picRect.top + height;
+                        }
+                        setZoomMidPoint();
+                        lastTwoPointDistance = distance;
+                        if (initPicRect) {
+                            initPicRect = false;
+                        }
+                        refresh();
+                    }
+                    break;
+                case MotionEvent.ACTION_UP:
+                    performClick();
+                default:
+                    doubleFingerMoving = false;
+                    frameMoving = false;
+            }
         }
         return true;
     }
@@ -395,7 +396,7 @@ public class CropPictureView extends View {
                 Bitmap cutPic = Bitmap.createBitmap(thePic, (int) (thePic.getWidth() * atPic.x),
                         (int) (thePic.getHeight() * atPic.y), cutWidth, cutHeight);
                 Drawable cutPicD = new BitmapDrawable(context.getResources(), cutPic);
-                cutPicD.setBounds(atFrame.x, atFrame.y, cutPicRect.width(), cutPicRect.height());
+                cutPicD.setBounds(atFrame.x, atFrame.y, atFrame.x + cutPicRect.width(), atFrame.y + cutPicRect.height());
                 cutPicD.draw(canvas);
             }
             canvas.save();

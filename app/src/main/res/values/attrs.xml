@@ -3,4 +3,10 @@
     <declare-styleable name="TemplateDiyView">
 
     </declare-styleable>
+
+    <declare-styleable name="CropPictureView">
+        <attr name="cropFrameColor" format="color"/>
+        <attr name="cropFrameStrokeWidth" format="dimension"/>
+        <attr name="cropFrameWeight" format="dimension"/>
+    </declare-styleable>
 </resources>

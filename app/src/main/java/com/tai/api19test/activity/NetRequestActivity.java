@@ -123,10 +123,10 @@ public class NetRequestActivity extends AppCompatActivity {
                 address = "https://" + address + ".ngrok.io/" + path;
 
                 OkHttpClient client = new OkHttpClient();
-                RequestBody requestBody = new FormBody.Builder()
+                /*RequestBody requestBody = new FormBody.Builder()
                         .add("a", "6")
                         .add("b", "鸣筝")
-                        .build();
+                        .build();*/
                 Request request = new Request.Builder()
                         .url(address)
                         //.post(requestBody)

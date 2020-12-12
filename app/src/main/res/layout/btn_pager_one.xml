@@ -68,7 +68,8 @@
         android:id="@+id/toPicCut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="图片裁剪"
+        android:text="图片裁剪及Base64的转换"
+        android:textAllCaps="false"
         android:textSize="22sp"
         android:textColor="@color/black"/>
 
@@ -81,10 +82,11 @@
         android:textColor="@color/black"/>
 
     <Button
-        android:id="@+id/toScrollTest"
+        android:id="@+id/toCustomView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="滑动"
+        android:text="自定义View"
+        android:textAllCaps="false"
         android:textSize="22sp"
         android:textColor="@color/black"/>
 

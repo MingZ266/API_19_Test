@@ -1,8 +1,11 @@
 package com.tai.api19test.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.github.aelstad.keccakj.fips202.SHA3_256;
@@ -44,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        }
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CAMERA}, 0);
+        }
 
         if (saveTime)
             Tools.saveStartTimeLog(context);
@@ -175,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
         skip(adapter.getIndexView(0).findViewById(R.id.toDiverseNotify), DiverseNotifyActivity.class);
         skip(adapter.getIndexView(0).findViewById(R.id.toPicCut), PicCutActivity.class);
         skip(adapter.getIndexView(0).findViewById(R.id.toNetRequest), NetRequestActivity.class);
-        skip(adapter.getIndexView(0).findViewById(R.id.toScrollTest), ScrollTestActivity.class);
+        skip(adapter.getIndexView(0).findViewById(R.id.toCustomView), CustomViewActivity.class);
         skip(adapter.getIndexView(0).findViewById(R.id.toQRCode), QRCodeActivity.class);
     }
 

@@ -82,6 +82,48 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/chooseSrcPic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="选择图片"
+            android:textSize="22sp"/>
+
+        <com.tai.api19test.view.MyImageView
+            android:id="@+id/showSrcPic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/codeToPic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="解析编码得到图片"
+            android:textSize="22sp"/>
+
+        <com.tai.api19test.view.MyImageView
+            android:id="@+id/showCodePic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="裁剪后："
+            android:textColor="@color/blue"
+            android:textSize="20sp"/>
+
+        <com.tai.api19test.view.MyImageView
+            android:id="@+id/cutPic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+
     </LinearLayout>
 
 </ScrollView>
